@@ -7,11 +7,24 @@
 //
 
 #import "WriteViewController.h"
-
+#import <UIImageView+WebCache.h>
 #import <MZFormSheetController.h>
+#import <ACEDrawingView.h>
+
 #import "DataItem.h"
 
-@interface WriteViewController ()
+@interface WriteViewController ()<ACEDrawingViewDelegate> {
+    
+    
+    __weak IBOutlet UIImageView *bgWriteImageView;
+    
+    __weak IBOutlet ACEDrawingView *drawView;
+    
+    
+}
+
+@property (nonatomic, strong) DataItem * mDataItem;
+
 
 @end
 
@@ -22,12 +35,15 @@
     
     WriteViewController * ctrl = [[WriteViewController alloc]initWithNibName:@"WriteViewController" bundle:nil];
     
+    ctrl.mDataItem = aItem;
+    
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:ctrl];
     
-    formSheet.presentedFormSheetSize = CGSizeMake(300, 370);
+    formSheet.presentedFormSheetSize = CGSizeMake(ScreenWidth - 40, ScreenWidth - 40 + 45);
     //    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
-    formSheet.shadowRadius = 2.0;
-    formSheet.shadowOpacity = 0.3;
+    
+    formSheet.shadowRadius = 0.0;
+    formSheet.shadowOpacity = 0.0;
     formSheet.shouldDismissOnBackgroundViewTap = YES;
     formSheet.shouldCenterVertically = YES;
     formSheet.movementWhenKeyboardAppears = MZFormSheetWhenKeyboardAppearsCenterVertically;
@@ -39,11 +55,42 @@
     
 }
 
+#pragma mark - 粗细
+- (IBAction)touchThickness:(id)sender {
+    
+    drawView.lineWidth = 1;
+    
+}
+
+#pragma mark - 颜色
+- (IBAction)touchColor:(id)sender {
+    
+    
+    
+    
+}
+
+#pragma mark - 清除
+- (IBAction)touchClear:(id)sender {
+    [drawView clear];
+}
+
+//完成
+- (IBAction)touchCancel:(id)sender {
+    [self mz_dismissFormSheetControllerAnimated:YES completionHandler:nil];
+}
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    drawView.delegate = self;
+    
+    drawView.lineColor = [UIColor redColor];
+    
+    [bgWriteImageView sd_setImageWithURL:[NSURL URLWithString:_mDataItem.imgurlstr] placeholderImage:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

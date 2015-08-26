@@ -9,6 +9,7 @@
 #import "AuthorCollectionController.h"
 #import "Service.h"
 #import <UIImageView+WebCache.h>
+#import "WriteViewController.h"
 @interface AuthorCollectionController () {
     NSInteger pageInt;
 }
@@ -153,5 +154,16 @@ static NSString * const reuseIdentifier = @"Cell";
     return reusableview;
     
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    DataItem * item = _dataArray[indexPath.row];
+    
+    [WriteViewController showWriteViewDelegate:self dataItem:item];
+    
+    
+}
+
 
 @end

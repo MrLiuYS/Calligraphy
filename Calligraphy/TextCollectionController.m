@@ -150,7 +150,9 @@ static NSString * const reuseIdentifier = @"Cell";
     
     DataItem * item = _dataArray[indexPath.section];
     
-    [WriteViewController showWriteViewDelegate:self dataItem:item];
+    DataItem * sutItem = item.subArray[indexPath.row];
+    
+    [WriteViewController showWriteViewDelegate:self dataItem:sutItem];
     
     
 }

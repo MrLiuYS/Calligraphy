@@ -12,8 +12,6 @@
 
 #import "DataItem.h"
 
-
-
 @interface Service : AFHTTPSessionManager
 
 + (instancetype)sharedClient;

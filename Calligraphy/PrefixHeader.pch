@@ -19,7 +19,9 @@
 
 #define kBaseURLString @"http://shufa.m.supfree.net/"
 
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
 
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
 
 /**
  *  app 软件在AppStore上的id
