@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0F85421B8DEA1400A9B164 /* WriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F85401B8DEA1400A9B164 /* WriteViewController.m */; };
+		0D0F85431B8DEA1400A9B164 /* WriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D0F85411B8DEA1400A9B164 /* WriteViewController.xib */; };
 		26BB455BE12FB100E0C84D4D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20322D1FD533D47BE6336E97 /* libPods.a */; };
 		6C59FD891B10B5F40067E83A /* AllAuthorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C59FD881B10B5F40067E83A /* AllAuthorController.m */; };
 		6C59FD8C1B10B61D0067E83A /* AllTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C59FD8B1B10B61D0067E83A /* AllTextController.m */; };
@@ -46,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D0F853F1B8DEA1400A9B164 /* WriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteViewController.h; sourceTree = "<group>"; };
+		0D0F85401B8DEA1400A9B164 /* WriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteViewController.m; sourceTree = "<group>"; };
+		0D0F85411B8DEA1400A9B164 /* WriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteViewController.xib; sourceTree = "<group>"; };
 		20322D1FD533D47BE6336E97 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		620D5961B838800D2FC67CCF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C59FD871B10B5F40067E83A /* AllAuthorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAuthorController.h; sourceTree = "<group>"; };
@@ -191,6 +196,9 @@
 				6C59FD881B10B5F40067E83A /* AllAuthorController.m */,
 				6C59FDA71B10E3FF0067E83A /* SetTableController.h */,
 				6C59FDA81B10E3FF0067E83A /* SetTableController.m */,
+				0D0F853F1B8DEA1400A9B164 /* WriteViewController.h */,
+				0D0F85401B8DEA1400A9B164 /* WriteViewController.m */,
+				0D0F85411B8DEA1400A9B164 /* WriteViewController.xib */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -318,7 +326,7 @@
 		FF27EB371B0AC6C100343E72 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = QiMENG;
 				TargetAttributes = {
 					FF27EB3E1B0AC6C100343E72 = {
@@ -356,6 +364,7 @@
 			files = (
 				FF27EB4E1B0AC6C100343E72 /* Main.storyboard in Resources */,
 				FF27EB531B0AC6C100343E72 /* LaunchScreen.xib in Resources */,
+				0D0F85431B8DEA1400A9B164 /* WriteViewController.xib in Resources */,
 				FF27EB501B0AC6C100343E72 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +427,7 @@
 				FF1471C61B0DA906008E39C9 /* TextCollectionController.m in Sources */,
 				FF27EB451B0AC6C100343E72 /* main.m in Sources */,
 				FFD4393A1B130790006C7FD0 /* UserData.m in Sources */,
+				0D0F85421B8DEA1400A9B164 /* WriteViewController.m in Sources */,
 				6C59FD891B10B5F40067E83A /* AllAuthorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +472,7 @@
 /* Begin XCBuildConfiguration section */
 		FF27EB601B0AC6C100343E72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E961CE87BF9B9508FD214E88 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -499,7 +510,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "5f3be61d-1af4-421b-8253-43af667b6fc2";
 				SDKROOT = iphoneos;
 			};
@@ -507,6 +518,7 @@
 		};
 		FF27EB611B0AC6C100343E72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E961CE87BF9B9508FD214E88 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -538,6 +550,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "5f3be61d-1af4-421b-8253-43af667b6fc2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -591,6 +604,7 @@
 		};
 		FF27EB661B0AC6C100343E72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E961CE87BF9B9508FD214E88 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -610,6 +624,7 @@
 		};
 		FF27EB671B0AC6C100343E72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E961CE87BF9B9508FD214E88 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

@@ -8,6 +8,8 @@ pod 'UMengAnalytics', '~> 3.5.8'
 pod 'UMengSocial', '~> 4.2.2'
 pod 'SDWebImage', '~> 3.7.2'
 pod 'SimplePurchase', '~> 0.0.1'
+pod 'MZFormSheetController', '~> 3.1.0'
+pod 'ACEDrawingView', '~> 1.3.5'
 
 target :CalligraphyTests, :exclusive => true do
   # pod 'Kiwi'

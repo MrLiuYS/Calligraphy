@@ -9,6 +9,9 @@
 #import "TextCollectionController.h"
 #import "Service.h"
 #import <UIImageView+WebCache.h>
+
+#import "WriteViewController.h"
+
 @interface TextCollectionController ()
 
 @property (nonatomic, strong) NSMutableArray * dataArray;
@@ -141,4 +144,17 @@ static NSString * const reuseIdentifier = @"Cell";
 {
     return UIEdgeInsetsMake(10,10, 10, 10);
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    DataItem * item = _dataArray[indexPath.section];
+    
+    [WriteViewController showWriteViewDelegate:self dataItem:item];
+    
+    
+}
+
+
+
 @end

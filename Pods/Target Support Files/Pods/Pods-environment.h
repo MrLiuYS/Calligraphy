@@ -6,6 +6,12 @@
 // project.
 
 
+// ACEDrawingView
+#define COCOAPODS_POD_AVAILABLE_ACEDrawingView
+#define COCOAPODS_VERSION_MAJOR_ACEDrawingView 1
+#define COCOAPODS_VERSION_MINOR_ACEDrawingView 3
+#define COCOAPODS_VERSION_PATCH_ACEDrawingView 5
+
 // AFNetworking
 #define COCOAPODS_POD_AVAILABLE_AFNetworking
 #define COCOAPODS_VERSION_MAJOR_AFNetworking 2
@@ -77,6 +83,24 @@
 #define COCOAPODS_VERSION_MAJOR_GDataXML_HTML 1
 #define COCOAPODS_VERSION_MINOR_GDataXML_HTML 2
 #define COCOAPODS_VERSION_PATCH_GDataXML_HTML 0
+
+// MZAppearance
+#define COCOAPODS_POD_AVAILABLE_MZAppearance
+#define COCOAPODS_VERSION_MAJOR_MZAppearance 1
+#define COCOAPODS_VERSION_MINOR_MZAppearance 1
+#define COCOAPODS_VERSION_PATCH_MZAppearance 5
+
+// MZFormSheetController
+#define COCOAPODS_POD_AVAILABLE_MZFormSheetController
+#define COCOAPODS_VERSION_MAJOR_MZFormSheetController 3
+#define COCOAPODS_VERSION_MINOR_MZFormSheetController 1
+#define COCOAPODS_VERSION_PATCH_MZFormSheetController 0
+
+// MZFormSheetController/Core
+#define COCOAPODS_POD_AVAILABLE_MZFormSheetController_Core
+#define COCOAPODS_VERSION_MAJOR_MZFormSheetController_Core 3
+#define COCOAPODS_VERSION_MINOR_MZFormSheetController_Core 1
+#define COCOAPODS_VERSION_PATCH_MZFormSheetController_Core 0
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
