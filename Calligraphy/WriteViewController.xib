@@ -20,6 +20,7 @@
                 <outlet property="drawView" destination="IJp-MM-QRI" id="i0i-yp-CCW"/>
                 <outlet property="lineSlider" destination="Oe5-iI-mVS" id="buL-YM-8IV"/>
                 <outlet property="lineView" destination="QRU-y3-HPl" id="AcK-po-IJH"/>
+                <outlet property="smallLabel" destination="H4m-P8-vpM" id="Q7T-Nz-kW5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,7 +51,33 @@
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJp-MM-QRI" customClass="ACEDrawingView">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                            <subviews>
+                                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JF-1y-K6B">
+                                    <rect key="frame" x="5" y="245" width="50" height="50"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4m-P8-vpM">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="H4m-P8-vpM" firstAttribute="top" secondItem="9JF-1y-K6B" secondAttribute="top" id="EL5-eG-zYY"/>
+                                        <constraint firstAttribute="bottom" secondItem="H4m-P8-vpM" secondAttribute="bottom" id="Jjh-9H-SE8"/>
+                                        <constraint firstAttribute="width" constant="50" id="U5w-zo-n8J"/>
+                                        <constraint firstItem="H4m-P8-vpM" firstAttribute="leading" secondItem="9JF-1y-K6B" secondAttribute="leading" id="oNS-Pz-iFG"/>
+                                        <constraint firstAttribute="height" constant="50" id="tVB-7A-PzN"/>
+                                        <constraint firstAttribute="trailing" secondItem="H4m-P8-vpM" secondAttribute="trailing" id="vpy-sY-9Km"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="9JF-1y-K6B" firstAttribute="leading" secondItem="IJp-MM-QRI" secondAttribute="leading" constant="5" id="aoy-Wh-n8O"/>
+                                <constraint firstAttribute="bottom" secondItem="9JF-1y-K6B" secondAttribute="bottom" constant="5" id="fsL-fD-oik"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -259,7 +286,7 @@
             <rect key="frame" x="0.0" y="0.0" width="200" height="49"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oe5-iI-mVS">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="Oe5-iI-mVS">
                     <rect key="frame" x="8" y="0.0" width="184" height="50"/>
                     <connections>
                         <action selector="changeLine:" destination="-1" eventType="valueChanged" id="zDr-d8-Ymb"/>

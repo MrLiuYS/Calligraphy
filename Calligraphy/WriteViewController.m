@@ -38,6 +38,7 @@
     
     __weak IBOutlet UISlider *lineSlider;
     
+    __weak IBOutlet UILabel *smallLabel;
     
 }
 
