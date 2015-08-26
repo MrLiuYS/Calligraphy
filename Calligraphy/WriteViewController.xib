@@ -9,7 +9,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WriteViewController">
             <connections>
                 <outlet property="bgWriteImageView" destination="USG-NS-2ya" id="XY3-VT-Ihz"/>
+                <outlet property="colorCurrentView" destination="2C9-0t-Kah" id="YDn-SP-BMS"/>
+                <outlet property="colorLabelB" destination="vVa-6N-lKF" id="621-8z-vGJ"/>
+                <outlet property="colorLabelG" destination="yjd-7h-40O" id="PUE-B1-1NQ"/>
+                <outlet property="colorLabelR" destination="Jaz-HS-Ehi" id="P52-CU-sAt"/>
+                <outlet property="colorSliderB" destination="Ss2-oS-MOE" id="7TD-pe-X4l"/>
+                <outlet property="colorSliderG" destination="pDh-Fc-kYI" id="cfV-Pk-iY2"/>
+                <outlet property="colorSliderR" destination="bat-Fz-xbz" id="pnN-uN-33U"/>
+                <outlet property="colorView" destination="s3Y-DK-gug" id="55M-wf-0DK"/>
                 <outlet property="drawView" destination="IJp-MM-QRI" id="i0i-yp-CCW"/>
+                <outlet property="lineSlider" destination="Oe5-iI-mVS" id="buL-YM-8IV"/>
+                <outlet property="lineView" destination="QRU-y3-HPl" id="AcK-po-IJH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -131,6 +141,140 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="242" y="281.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="s3Y-DK-gug">
+            <rect key="frame" x="0.0" y="0.0" width="220" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6BJ-bh-14e">
+                    <rect key="frame" x="0.0" y="0.0" width="220" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="R" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaz-HS-Ehi">
+                            <rect key="frame" x="10" y="0.0" width="14.5" height="50"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bat-Fz-xbz">
+                            <rect key="frame" x="32" y="0.0" width="150" height="51"/>
+                            <connections>
+                                <action selector="changeSlider:" destination="-1" eventType="valueChanged" id="yWX-LI-I5g"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Jaz-HS-Ehi" firstAttribute="top" secondItem="6BJ-bh-14e" secondAttribute="top" id="HfI-4f-Q2O"/>
+                        <constraint firstItem="bat-Fz-xbz" firstAttribute="leading" secondItem="Jaz-HS-Ehi" secondAttribute="trailing" constant="10" id="LNj-rw-cVW"/>
+                        <constraint firstItem="bat-Fz-xbz" firstAttribute="top" secondItem="6BJ-bh-14e" secondAttribute="top" id="ZKM-id-q9v"/>
+                        <constraint firstAttribute="trailing" secondItem="bat-Fz-xbz" secondAttribute="trailing" constant="40" id="bbO-9A-VoX"/>
+                        <constraint firstAttribute="bottom" secondItem="bat-Fz-xbz" secondAttribute="bottom" id="gMi-we-exb"/>
+                        <constraint firstAttribute="bottom" secondItem="Jaz-HS-Ehi" secondAttribute="bottom" id="hrQ-Ff-193"/>
+                        <constraint firstItem="Jaz-HS-Ehi" firstAttribute="leading" secondItem="6BJ-bh-14e" secondAttribute="leading" constant="10" id="uZM-aj-Hbe"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEQ-tK-CU9">
+                    <rect key="frame" x="0.0" y="50" width="220" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjd-7h-40O">
+                            <rect key="frame" x="10" y="0.0" width="15.5" height="50"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pDh-Fc-kYI">
+                            <rect key="frame" x="33" y="0.0" width="149" height="51"/>
+                            <connections>
+                                <action selector="changeSlider:" destination="-1" eventType="valueChanged" id="J0K-zg-AGh"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="yjd-7h-40O" firstAttribute="top" secondItem="nEQ-tK-CU9" secondAttribute="top" id="C07-Nv-ouc"/>
+                        <constraint firstItem="yjd-7h-40O" firstAttribute="leading" secondItem="nEQ-tK-CU9" secondAttribute="leading" constant="10" id="Kw5-av-HUG"/>
+                        <constraint firstAttribute="bottom" secondItem="pDh-Fc-kYI" secondAttribute="bottom" id="N7a-26-yg1"/>
+                        <constraint firstAttribute="trailing" secondItem="pDh-Fc-kYI" secondAttribute="trailing" constant="40" id="iAz-DN-6nO"/>
+                        <constraint firstAttribute="bottom" secondItem="yjd-7h-40O" secondAttribute="bottom" id="iDH-nM-nIc"/>
+                        <constraint firstItem="pDh-Fc-kYI" firstAttribute="top" secondItem="nEQ-tK-CU9" secondAttribute="top" id="khJ-SY-8xS"/>
+                        <constraint firstItem="pDh-Fc-kYI" firstAttribute="leading" secondItem="yjd-7h-40O" secondAttribute="trailing" constant="10" id="nEY-Ch-FKl"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMD-cC-5yn">
+                    <rect key="frame" x="0.0" y="100" width="220" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="B" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVa-6N-lKF">
+                            <rect key="frame" x="10" y="0.0" width="14.5" height="50"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ss2-oS-MOE">
+                            <rect key="frame" x="32" y="0.0" width="150" height="51"/>
+                            <connections>
+                                <action selector="changeSlider:" destination="-1" eventType="valueChanged" id="G6r-uc-myI"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Ss2-oS-MOE" secondAttribute="bottom" id="KUh-jk-adX"/>
+                        <constraint firstItem="Ss2-oS-MOE" firstAttribute="top" secondItem="nMD-cC-5yn" secondAttribute="top" id="bpa-gO-xNR"/>
+                        <constraint firstItem="Ss2-oS-MOE" firstAttribute="leading" secondItem="vVa-6N-lKF" secondAttribute="trailing" constant="10" id="c3u-Up-GqQ"/>
+                        <constraint firstAttribute="trailing" secondItem="Ss2-oS-MOE" secondAttribute="trailing" constant="40" id="eRj-Ba-jtB"/>
+                        <constraint firstAttribute="bottom" secondItem="vVa-6N-lKF" secondAttribute="bottom" id="g9J-VR-sM7"/>
+                        <constraint firstItem="vVa-6N-lKF" firstAttribute="top" secondItem="nMD-cC-5yn" secondAttribute="top" id="iJi-DZ-sRg"/>
+                        <constraint firstItem="vVa-6N-lKF" firstAttribute="leading" secondItem="nMD-cC-5yn" secondAttribute="leading" constant="10" id="sYE-Fa-7Pn"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2C9-0t-Kah">
+                    <rect key="frame" x="185" y="10" width="30" height="130"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="WJb-du-lxh"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6BJ-bh-14e" firstAttribute="height" secondItem="nEQ-tK-CU9" secondAttribute="height" id="2rt-my-9Tk"/>
+                <constraint firstAttribute="trailing" secondItem="nMD-cC-5yn" secondAttribute="trailing" id="7CJ-pR-3Y1"/>
+                <constraint firstItem="2C9-0t-Kah" firstAttribute="top" secondItem="s3Y-DK-gug" secondAttribute="top" constant="10" id="7S6-Hd-6oM"/>
+                <constraint firstAttribute="bottom" secondItem="nMD-cC-5yn" secondAttribute="bottom" id="8HV-cB-ZDU"/>
+                <constraint firstItem="nEQ-tK-CU9" firstAttribute="top" secondItem="6BJ-bh-14e" secondAttribute="bottom" id="9I8-pZ-LxI"/>
+                <constraint firstAttribute="trailing" secondItem="nEQ-tK-CU9" secondAttribute="trailing" id="Jng-y8-v8d"/>
+                <constraint firstItem="6BJ-bh-14e" firstAttribute="leading" secondItem="s3Y-DK-gug" secondAttribute="leading" id="NBj-G3-gFr"/>
+                <constraint firstAttribute="bottom" secondItem="2C9-0t-Kah" secondAttribute="bottom" constant="10" id="SZf-Rj-Dzq"/>
+                <constraint firstItem="nMD-cC-5yn" firstAttribute="leading" secondItem="s3Y-DK-gug" secondAttribute="leading" id="VGq-2X-LNo"/>
+                <constraint firstItem="nMD-cC-5yn" firstAttribute="top" secondItem="nEQ-tK-CU9" secondAttribute="bottom" id="VXI-Vb-5Ne"/>
+                <constraint firstItem="nEQ-tK-CU9" firstAttribute="leading" secondItem="s3Y-DK-gug" secondAttribute="leading" id="cpH-iz-nCE"/>
+                <constraint firstItem="6BJ-bh-14e" firstAttribute="top" secondItem="s3Y-DK-gug" secondAttribute="top" id="fft-Le-9JY"/>
+                <constraint firstAttribute="trailing" secondItem="2C9-0t-Kah" secondAttribute="trailing" constant="5" id="kO1-HC-BKx"/>
+                <constraint firstAttribute="trailing" secondItem="6BJ-bh-14e" secondAttribute="trailing" id="my8-Ox-TUU"/>
+                <constraint firstItem="nMD-cC-5yn" firstAttribute="top" secondItem="nEQ-tK-CU9" secondAttribute="bottom" id="ons-C6-1UY"/>
+                <constraint firstItem="6BJ-bh-14e" firstAttribute="height" secondItem="nMD-cC-5yn" secondAttribute="height" id="pgF-oP-bUf"/>
+                <constraint firstItem="nEQ-tK-CU9" firstAttribute="top" secondItem="6BJ-bh-14e" secondAttribute="bottom" id="rU3-ow-Ev4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="581" y="183"/>
+        </view>
+        <view contentMode="scaleToFill" id="QRU-y3-HPl">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="49"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="1" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="Oe5-iI-mVS">
+                    <rect key="frame" x="8" y="0.0" width="184" height="50"/>
+                    <connections>
+                        <action selector="changeLine:" destination="-1" eventType="valueChanged" id="zDr-d8-Ymb"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Oe5-iI-mVS" secondAttribute="bottom" id="8CI-sh-6xi"/>
+                <constraint firstItem="Oe5-iI-mVS" firstAttribute="top" secondItem="QRU-y3-HPl" secondAttribute="top" id="DNw-Iz-4lo"/>
+                <constraint firstItem="Oe5-iI-mVS" firstAttribute="leading" secondItem="QRU-y3-HPl" secondAttribute="leading" constant="10" id="ehq-Ed-qCh"/>
+                <constraint firstAttribute="trailing" secondItem="Oe5-iI-mVS" secondAttribute="trailing" constant="10" id="gLo-RG-Ror"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="581" y="400.5"/>
         </view>
     </objects>
 </document>

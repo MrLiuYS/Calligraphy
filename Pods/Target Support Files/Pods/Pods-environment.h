@@ -102,6 +102,12 @@
 #define COCOAPODS_VERSION_MINOR_MZFormSheetController_Core 1
 #define COCOAPODS_VERSION_PATCH_MZFormSheetController_Core 0
 
+// PopoverView
+#define COCOAPODS_POD_AVAILABLE_PopoverView
+#define COCOAPODS_VERSION_MAJOR_PopoverView 0
+#define COCOAPODS_VERSION_MINOR_PopoverView 0
+#define COCOAPODS_VERSION_PATCH_PopoverView 2
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3

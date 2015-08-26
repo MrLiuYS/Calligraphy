@@ -10,15 +10,33 @@
 #import <UIImageView+WebCache.h>
 #import <MZFormSheetController.h>
 #import <ACEDrawingView.h>
-
+#import <PopoverView.h>
 #import "DataItem.h"
 
-@interface WriteViewController ()<ACEDrawingViewDelegate> {
+@interface WriteViewController ()<ACEDrawingViewDelegate,PopoverViewDelegate> {
     
     
     __weak IBOutlet UIImageView *bgWriteImageView;
     
     __weak IBOutlet ACEDrawingView *drawView;
+    
+    
+    IBOutlet UIView *colorView;
+    
+    __weak IBOutlet UILabel *colorLabelR;
+    __weak IBOutlet UISlider *colorSliderR;
+    
+    __weak IBOutlet UILabel *colorLabelG;
+    __weak IBOutlet UISlider *colorSliderG;
+    
+    __weak IBOutlet UILabel *colorLabelB;
+    __weak IBOutlet UISlider *colorSliderB;
+    __weak IBOutlet UIView *colorCurrentView;
+    
+    
+    IBOutlet UIView *lineView;
+    
+    __weak IBOutlet UISlider *lineSlider;
     
     
 }
@@ -39,7 +57,7 @@
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:ctrl];
     
-    formSheet.presentedFormSheetSize = CGSizeMake(ScreenWidth - 40, ScreenWidth - 40 + 45);
+    formSheet.presentedFormSheetSize = CGSizeMake(ScreenWidth - 20, ScreenWidth - 20 + 45);
     //    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     
     formSheet.shadowRadius = 0.0;
@@ -56,19 +74,50 @@
 }
 
 #pragma mark - 粗细
-- (IBAction)touchThickness:(id)sender {
+- (IBAction)touchThickness:(UIButton *)sender {
     
-    drawView.lineWidth = 1;
+    [PopoverView showPopoverAtPoint:sender.center
+                             inView:self.view
+                    withContentView:lineView
+                           delegate:self];
     
 }
 
 #pragma mark - 颜色
-- (IBAction)touchColor:(id)sender {
+- (IBAction)touchColor:(UIButton *)sender {
     
-    
+    [PopoverView showPopoverAtPoint:sender.center
+                             inView:self.view
+                    withContentView:colorView
+                           delegate:self];
     
     
 }
+- (IBAction)changeSlider:(UISlider *)sender {
+    
+    if (sender == colorSliderR) {
+        
+        colorSliderR.minimumTrackTintColor = colorLabelR.textColor = colorSliderR.thumbTintColor = [UIColor colorWithRed:sender.value green:0 blue:0 alpha:1];
+    }
+    else if (sender == colorSliderG) {
+        colorSliderG.minimumTrackTintColor = colorLabelG.textColor = colorSliderG.thumbTintColor = [UIColor colorWithRed:0 green:sender.value blue:0 alpha:1];
+        
+    }else if (sender == colorSliderB) {
+        
+        colorSliderB.minimumTrackTintColor = colorLabelB.textColor = colorSliderB.thumbTintColor = [UIColor colorWithRed:0 green:0 blue:sender.value alpha:1];
+    }
+    
+    colorCurrentView.backgroundColor = drawView.lineColor = [UIColor colorWithRed:colorSliderR.value green:colorSliderG.value blue:colorSliderB.value alpha:1];
+
+}
+
+- (IBAction)changeLine:(UISlider *)sender {
+    
+    drawView.lineWidth = sender.value;
+    
+}
+
+
 
 #pragma mark - 清除
 - (IBAction)touchClear:(id)sender {
@@ -90,6 +139,12 @@
     drawView.lineColor = [UIColor redColor];
     
     [bgWriteImageView sd_setImageWithURL:[NSURL URLWithString:_mDataItem.imgurlstr] placeholderImage:nil];
+    
+    [self changeSlider:colorSliderR];
+    [self changeSlider:colorSliderG];
+    [self changeSlider:colorSliderB];
+    
+    [self changeLine:lineSlider];
     
 }
 
