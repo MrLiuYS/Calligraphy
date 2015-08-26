@@ -488,8 +488,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yongsheng liu (K6D5KQ7QKW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yongsheng liu (K6D5KQ7QKW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yongsheng liu (24D459F86D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yongsheng liu (24D459F86D)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -511,7 +511,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+
 				PROVISIONING_PROFILE = "5f3be61d-1af4-421b-8253-43af667b6fc2";
+
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -534,8 +536,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yongsheng liu (K6D5KQ7QKW)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yongsheng liu (K6D5KQ7QKW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yongsheng liu (24D459F86D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yongsheng liu (24D459F86D)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -552,6 +554,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "5f3be61d-1af4-421b-8253-43af667b6fc2";
+
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -563,7 +566,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yongsheng liu (K6D5KQ7QKW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yongsheng liu (24D459F86D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Calligraphy/PrefixHeader.pch";
 				INFOPLIST_FILE = Calligraphy/Info.plist;
@@ -573,9 +576,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/spotlib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5f3be61d-1af4-421b-8253-43af667b6fc2";
+				PROVISIONING_PROFILE = "c804dc9c-5aff-4f49-9524-051528990435";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -586,7 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: yongsheng liu (K6D5KQ7QKW)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yongsheng liu (24D459F86D)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Calligraphy/PrefixHeader.pch";
 				INFOPLIST_FILE = Calligraphy/Info.plist;
@@ -597,7 +599,7 @@
 					"$(PROJECT_DIR)/spotlib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5f3be61d-1af4-421b-8253-43af667b6fc2";
+				PROVISIONING_PROFILE = "c804dc9c-5aff-4f49-9524-051528990435";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
