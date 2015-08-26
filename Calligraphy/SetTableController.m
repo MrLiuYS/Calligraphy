@@ -24,16 +24,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([UserData iAPClear]) {
-        clearLabel.text = @"回复购买";
-    }
-    
-    
+//    if ([UserData iAPClear]) {
+//        clearLabel.text = @"回复购买";
+//    }
+//    
+//    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (IBAction)touchResumeBuying:(id)sender {
+    
+    [SVProgressHUD show];
+    
+    [SimplePurchase buyProduct:kIAPClear block:^(NSError *error)
+     {
+         [SVProgressHUD dismiss];
+         
+         if (error)
+         {
+             [[[UIAlertView alloc] initWithTitle:@"Purchase Error"
+                                         message:error.localizedDescription
+                                        delegate:nil
+                               cancelButtonTitle:@"OK"
+                               otherButtonTitles:nil] show];
+         }else {
+             
+             [UserData setiAPClear];
+//             clearLabel.text = @"回复购买";
+         }
+     }];
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,10 +91,11 @@
                                             delegate:nil
                                    cancelButtonTitle:@"OK"
                                    otherButtonTitles:nil] show];
-             }else {
+             }
+             else {
                  
                  [UserData setiAPClear];
-                 clearLabel.text = @"回复购买";
+//                 clearLabel.text = @"回复购买";
              }
          }];
         

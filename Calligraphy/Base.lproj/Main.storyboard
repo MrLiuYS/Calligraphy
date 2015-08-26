@@ -527,7 +527,13 @@
                             <outlet property="delegate" destination="ge0-JZ-ZZI" id="XYX-Kh-OJb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="设置" id="vbl-ct-Ksp"/>
+                    <navigationItem key="navigationItem" title="设置" id="vbl-ct-Ksp">
+                        <barButtonItem key="rightBarButtonItem" title="恢复购买" id="Z5o-QK-sqj">
+                            <connections>
+                                <action selector="touchResumeBuying:" destination="ge0-JZ-ZZI" id="kPv-Kj-ssR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="clearLabel" destination="QjN-pj-aEM" id="ZhS-Gw-nkM"/>
                     </connections>
