@@ -27,7 +27,7 @@
     //使用前先初始化一下插屏
     [YouMiNewSpot initYouMiDeveLoperSpot:kSPOTSpotTypeBoth];//填上你对应的横竖屏模式
     
-//    [MobClick startWithAppkey:kUMengKey reportPolicy:BATCH   channelId:@"AppStore"];
+    [MobClick startWithAppkey:kUMengKey reportPolicy:BATCH   channelId:@"AppStore"];
     
     [UMSocialData setAppKey:kUMengKey];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
