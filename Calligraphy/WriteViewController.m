@@ -58,7 +58,9 @@
     
     MZFormSheetController *formSheet = [[MZFormSheetController alloc] initWithViewController:ctrl];
     
-    formSheet.presentedFormSheetSize = CGSizeMake(ScreenWidth - 20, ScreenWidth - 20 + 45);
+    float height = MIN(((UIViewController*)aDelegate).view.frame.size.width, ((UIViewController*)aDelegate).view.frame.size.height);
+    
+    formSheet.presentedFormSheetSize = CGSizeMake(height - 50, height - 50 + 45);
     //    formSheet.transitionStyle = MZFormSheetTransitionStyleSlideFromTop;
     
     formSheet.shadowRadius = 0.0;
