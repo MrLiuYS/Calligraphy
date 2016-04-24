@@ -11,7 +11,14 @@
 #import "TextCollectionController.h"
 #import "AuthorCollectionController.h"
 #import "DefaultReusableView.h"
-@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate,DefaultReusableViewDelegate>
+@interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate,DefaultReusableViewDelegate> {
+    
+    
+    __weak IBOutlet UIView *_bannerView;
+    
+    __weak IBOutlet NSLayoutConstraint *_bannerViewHeight;
+    
+}
 
 @property (weak, nonatomic) IBOutlet UISearchBar *mainSearchBar;
 
@@ -42,7 +49,14 @@ static NSString * const reuseIdentifier = @"GradientCell";
     }];
     
     
+    if ([UserData iAPClear]) {
+        
+        _bannerViewHeight.constant = 0;
+    }
     
+    
+    [GQMAdSupper showBannerInView:_bannerView
+                   viewController:self];
     
 }
 

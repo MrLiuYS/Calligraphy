@@ -17,6 +17,8 @@
 
 #import "UserData.h"
 
+#import "QMAdSupper.h"
+
 #define kBaseURLString @"http://shufa.m.supfree.net/"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -32,7 +34,7 @@
  *  友盟上的key
  *  
  */
-#define kUMengKey @"5560ace867e58e81270046d5"
+#define kUMengKey (DEBUG ? @"567e70e9e0f55aacb9002879": @"5560ace867e58e81270046d5")
 
 
 #define kIAPClear @"CleariAd"

@@ -23,7 +23,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.title = _selectItem.author;
     _dataArray = [NSMutableArray array];
     pageInt = 1;
@@ -37,17 +37,20 @@ static NSString * const reuseIdentifier = @"Cell";
                              [self.collectionView reloadData];
                              
                              [SVProgressHUD dismiss];
-
+                             
                          }];
     
-    if (![UserData iAPClear]) {
-        //        int a = arc4random()%10;
-        //        if (a>4) {
-        [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
-        }];
-        //        }
-    }
-
+    [GQMAdSupper showTableScreenInViewController:self];
+    
+    
+    //    if (![UserData iAPClear]) {
+    //        //        int a = arc4random()%10;
+    //        //        if (a>4) {
+    //        [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
+    //        }];
+    //        //        }
+    //    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,14 +59,14 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -89,8 +92,8 @@ static NSString * const reuseIdentifier = @"Cell";
         [imageView sd_setImageWithURL:[NSURL URLWithString:item.imgurlstr] placeholderImage:nil];
     }
     
-//    cell.backgroundColor = [UIColor colorWithRed:(1-(10 * indexPath.row) / 255.0) green:(1-(20 * indexPath.row)/255.0) blue:(1-(30 * indexPath.row)/255.0) alpha:1.0f];
-//    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
+    //    cell.backgroundColor = [UIColor colorWithRed:(1-(10 * indexPath.row) / 255.0) green:(1-(20 * indexPath.row)/255.0) blue:(1-(30 * indexPath.row)/255.0) alpha:1.0f];
+    //    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f];
     
     cell.layer.masksToBounds = YES;
     cell.layer.borderColor = [UIColor blackColor].CGColor ;

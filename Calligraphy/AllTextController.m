@@ -41,9 +41,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [SVProgressHUD dismiss];
         
     }];
-    
-//    [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
-//    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
