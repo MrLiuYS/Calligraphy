@@ -457,6 +457,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
    limitations under the License.
 
 
+## Google-Mobile-Ads-SDK
+
+Copyright 2011 Google Inc. All Rights Reserved.
+
 ## MZAppearance
 
 The MIT License (MIT)

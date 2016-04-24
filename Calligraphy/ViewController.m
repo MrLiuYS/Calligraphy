@@ -40,10 +40,10 @@ static NSString * const reuseIdentifier = @"GradientCell";
         [SVProgressHUD dismiss];
         
     }];
-
     
     
-
+    
+    
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
@@ -55,7 +55,7 @@ static NSString * const reuseIdentifier = @"GradientCell";
     [_mainSearchBar resignFirstResponder];
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-
+    
     if (searchBar.text.length>1 || searchBar.text.length<1) {
         [SVProgressHUD showErrorWithStatus:@"请输入一个汉字"];
     }else {
@@ -66,7 +66,7 @@ static NSString * const reuseIdentifier = @"GradientCell";
             
             [_mainSearchBar setShowsCancelButton:NO];
             [_mainSearchBar resignFirstResponder];
-
+            
         }else {
             [SVProgressHUD showErrorWithStatus:@"请输入中文"];
         }
@@ -84,18 +84,18 @@ static NSString * const reuseIdentifier = @"GradientCell";
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     UILabel * titleLabel = (UILabel *)[cell viewWithTag:100];
     
     DataItem * item = ((NSArray *)_dataArray[indexPath.section])[indexPath.row];
-
     
-//    cell.backgroundColor = [UIColor colorWithRed:(1-(5 * indexPath.row) / 255.0) green:(1-(10 * indexPath.row)/255.0) blue:(1-(15 * indexPath.row)/255.0) alpha:1.0f];
     
-//    float colorRed = (float)indexPath.row/((NSArray *)_dataArray[indexPath.section]).count;
-//    cell.backgroundColor = [UIColor colorWithRed:colorRed+0.0 green:colorRed+0.3 blue:colorRed+0.6 alpha:1.0f];
+    //    cell.backgroundColor = [UIColor colorWithRed:(1-(5 * indexPath.row) / 255.0) green:(1-(10 * indexPath.row)/255.0) blue:(1-(15 * indexPath.row)/255.0) alpha:1.0f];
+    
+    //    float colorRed = (float)indexPath.row/((NSArray *)_dataArray[indexPath.section]).count;
+    //    cell.backgroundColor = [UIColor colorWithRed:colorRed+0.0 green:colorRed+0.3 blue:colorRed+0.6 alpha:1.0f];
     
     if (item.author) {
         titleLabel.text = item.author;
@@ -108,10 +108,10 @@ static NSString * const reuseIdentifier = @"GradientCell";
     cell.layer.borderColor = [UIColor blackColor].CGColor ;
     cell.layer.borderWidth = 1;
     cell.layer.masksToBounds = YES;
-//    cell.backgroundColor = [UIColor colorWithRed:(1-(10 * indexPath.row) / 255.0) green:(1-(20 * indexPath.row)/255.0) blue:(1-(30 * indexPath.row)/255.0) alpha:1.0f];
-
-//    NSLog(@"%f",colorRed);
-//    cell.backgroundColor = [UIColor colorWithRed:((10 * indexPath.row) / 255.0) green:((20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f];
+    //    cell.backgroundColor = [UIColor colorWithRed:(1-(10 * indexPath.row) / 255.0) green:(1-(20 * indexPath.row)/255.0) blue:(1-(30 * indexPath.row)/255.0) alpha:1.0f];
+    
+    //    NSLog(@"%f",colorRed);
+    //    cell.backgroundColor = [UIColor colorWithRed:((10 * indexPath.row) / 255.0) green:((20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f];
     
     return cell;
 }
@@ -132,9 +132,9 @@ static NSString * const reuseIdentifier = @"GradientCell";
     }else {
         NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:30]};
         CGSize textSize = [item.title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
-                                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                 attributes:attribute
-                                                    context:nil].size;
+                                                   options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                attributes:attribute
+                                                   context:nil].size;
         
         return CGSizeMake(ceilf(textSize.height), ceilf(textSize.height));
     }
@@ -155,7 +155,7 @@ static NSString * const reuseIdentifier = @"GradientCell";
         headerView.deletage = self;
         headerView.indexPath = indexPath;
         UILabel * titleLable = (UILabel *)[headerView viewWithTag:100];
-
+        
         
         switch (indexPath.section) {
             case 0:
@@ -203,7 +203,7 @@ static NSString * const reuseIdentifier = @"GradientCell";
     DataItem * item = ((NSArray *)_dataArray[indexPath.section])[indexPath.row];
     
     if (indexPath.section == 0) {
-     
+        
         [self performSegueWithIdentifier:@"TextCollectionController" sender:item.title];
         
     }else {
@@ -213,7 +213,7 @@ static NSString * const reuseIdentifier = @"GradientCell";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
+    
     if ([segue.identifier isEqualToString:@"TextCollectionController"]) {
         TextCollectionController *ctrl = segue.destinationViewController;
         ctrl.searchStr = sender;

@@ -30,6 +30,7 @@ PODS:
   - CocoaLumberjack/Extensions (2.0.0):
     - CocoaLumberjack/Default
   - GDataXML-HTML (1.2.0)
+  - Google-Mobile-Ads-SDK (7.7.0)
   - MZAppearance (1.1.5)
   - MZFormSheetController (3.1.0):
     - MZAppearance
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - CocoaLumberjack (~> 2.0.0)
   - GDataXML-HTML (~> 1.2.0)
+  - Google-Mobile-Ads-SDK (~> 7.7.0)
   - MZFormSheetController (~> 3.1.0)
   - PopoverView (~> 0.0.2)
   - SDWebImage (~> 3.7.2)
@@ -63,6 +65,7 @@ SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
   GDataXML-HTML: dac3692417e9fc612f8e12d8baae3706fccedcc8
+  Google-Mobile-Ads-SDK: d290e523a6e2f223256abcbf8e0c778b55b1f04e
   MZAppearance: 6e9dc64e42074c0a19812a327f590746c3283bab
   MZFormSheetController: a29e904f8832bcaa08a9751106e10beb4df751df
   PopoverView: 62e83ffda75944d6cf2de9c6593489f3097dc1a3
@@ -72,4 +75,4 @@ SPEC CHECKSUMS:
   UMengAnalytics: 020551718ba37da017bd85ac4c38ffba2774f3ce
   UMengSocial: c608958b8aec7831d2a0964b62fc4cd1ed0bd9c3
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.39.0

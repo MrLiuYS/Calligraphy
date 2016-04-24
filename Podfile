@@ -11,7 +11,8 @@ pod 'SimplePurchase', '~> 0.0.1'
 pod 'MZFormSheetController', '~> 3.1.0'
 pod 'ACEDrawingView', '~> 1.3.5'
 pod 'PopoverView', '~> 0.0.2'
+pod 'Google-Mobile-Ads-SDK', '~> 7.7.0'
 
 target :CalligraphyTests, :exclusive => true do
-  # pod 'Kiwi'
+    # pod 'Kiwi'
 end
