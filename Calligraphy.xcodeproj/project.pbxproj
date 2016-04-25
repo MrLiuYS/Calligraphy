@@ -10,6 +10,7 @@
 		0D0F85421B8DEA1400A9B164 /* WriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D0F85401B8DEA1400A9B164 /* WriteViewController.m */; };
 		0D0F85431B8DEA1400A9B164 /* WriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D0F85411B8DEA1400A9B164 /* WriteViewController.xib */; };
 		0D33F06E1CCD096700D576F1 /* QMAdSupper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D33F06D1CCD096700D576F1 /* QMAdSupper.m */; };
+		0DCE98E51CCED5E500B31C7E /* Default-568.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DCE98E41CCED5E500B31C7E /* Default-568.png */; };
 		26BB455BE12FB100E0C84D4D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20322D1FD533D47BE6336E97 /* libPods.a */; };
 		6C59FD891B10B5F40067E83A /* AllAuthorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C59FD881B10B5F40067E83A /* AllAuthorController.m */; };
 		6C59FD8C1B10B61D0067E83A /* AllTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C59FD8B1B10B61D0067E83A /* AllTextController.m */; };
@@ -54,6 +55,7 @@
 		0D0F85411B8DEA1400A9B164 /* WriteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteViewController.xib; sourceTree = "<group>"; };
 		0D33F06C1CCD096700D576F1 /* QMAdSupper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QMAdSupper.h; sourceTree = "<group>"; };
 		0D33F06D1CCD096700D576F1 /* QMAdSupper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QMAdSupper.m; sourceTree = "<group>"; };
+		0DCE98E41CCED5E500B31C7E /* Default-568.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568.png"; sourceTree = "<group>"; };
 		20322D1FD533D47BE6336E97 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		620D5961B838800D2FC67CCF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6C59FD871B10B5F40067E83A /* AllAuthorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllAuthorController.h; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		FF27EB411B0AC6C100343E72 /* Calligraphy */ = {
 			isa = PBXGroup;
 			children = (
+				0DCE98E41CCED5E500B31C7E /* Default-568.png */,
 				6C59FD901B10DDFE0067E83A /* spotlib */,
 				FF27EB461B0AC6C100343E72 /* AppDelegate.h */,
 				FF27EB471B0AC6C100343E72 /* AppDelegate.m */,
@@ -369,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DCE98E51CCED5E500B31C7E /* Default-568.png in Resources */,
 				FF27EB4E1B0AC6C100343E72 /* Main.storyboard in Resources */,
 				FF27EB531B0AC6C100343E72 /* LaunchScreen.xib in Resources */,
 				0D0F85431B8DEA1400A9B164 /* WriteViewController.xib in Resources */,
@@ -585,7 +589,6 @@
 			baseConfigurationReference = E961CE87BF9B9508FD214E88 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -609,7 +612,6 @@
 			baseConfigurationReference = 620D5961B838800D2FC67CCF /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
