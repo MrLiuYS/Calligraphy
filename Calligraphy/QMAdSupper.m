@@ -159,6 +159,8 @@
         
         if ([self.gadInterstitial isReady]) {
             [self.gadInterstitial presentFromRootViewController:aViewController];
+        }else {
+            [self showYoumi];
         }
         
     }
