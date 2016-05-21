@@ -91,11 +91,11 @@
     }
     
     
-    if ([self isBetweenFromHour:10 toHour:15]) {
-        [self showYoumi];
-    }else {
-        [self showGadInterstitial:aViewController];
-    }
+    //    if ([self isBetweenFromHour:10 toHour:15]) {
+    //        [self showYoumi];
+    //    }else {
+    [self showGadInterstitial:aViewController];
+    //    }
     
 }
 
