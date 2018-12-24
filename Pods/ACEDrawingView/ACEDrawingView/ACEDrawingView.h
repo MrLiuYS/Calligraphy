@@ -24,19 +24,21 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ACEDrawingLabelView.h"
 
-#define ACEDrawingViewVersion   1.0.0
+#define ACEDrawingViewVersion   2.0.1
 
 typedef enum {
     ACEDrawingToolTypePen,
     ACEDrawingToolTypeLine,
+    ACEDrawingToolTypeArrow,
     ACEDrawingToolTypeRectagleStroke,
     ACEDrawingToolTypeRectagleFill,
     ACEDrawingToolTypeEllipseStroke,
     ACEDrawingToolTypeEllipseFill,
     ACEDrawingToolTypeEraser,
-    ACEDrawingToolTypeText,
-    ACEDrawingToolTypeMultilineText
+    ACEDrawingToolTypeDraggableText,
+    ACEDrawingToolTypeCustom,
 } ACEDrawingToolType;
 
 typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
@@ -46,20 +48,26 @@ typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
 
 @protocol ACEDrawingViewDelegate, ACEDrawingTool;
 
-@interface ACEDrawingView : UIView<UITextViewDelegate>
+@interface ACEDrawingView : UIView<ACEDrawingLabelViewDelegate>
 
 @property (nonatomic, assign) ACEDrawingToolType drawTool;
+@property (nonatomic, strong) id<ACEDrawingTool> customDrawTool;
 @property (nonatomic, assign) id<ACEDrawingViewDelegate> delegate;
 
 // public properties
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) CGFloat lineAlpha;
+@property (nonatomic, assign) CGFloat edgeSnapThreshold;
 @property (nonatomic, assign) ACEDrawingMode drawMode;
+
+@property (nonatomic, strong) NSString *draggableTextFontName;
+@property (nonatomic, strong) UIImage *draggableTextCloseImage;
+@property (nonatomic, strong) UIImage *draggableTextRotateImage;
 
 // get the current drawing
 @property (nonatomic, strong, readonly) UIImage *image;
-@property (nonatomic, strong) UIImage *prev_image;
+@property (nonatomic, strong) UIImage *backgroundImage;
 @property (nonatomic, readonly) NSUInteger undoSteps;
 
 // load external image
@@ -69,12 +77,17 @@ typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
 // erase all
 - (void)clear;
 
+// cleanup in preparation for taking a snapshot
+- (void)prepareForSnapshot;
+
 // undo / redo
 - (BOOL)canUndo;
 - (void)undoLatestStep;
 
 - (BOOL)canRedo;
 - (void)redoLatestStep;
+
+- (UIImage *)applyDrawToImage:(UIImage *)baseImage;
 
 /**
  @discussion Discards the tool stack and renders them to prev_image, making the current state the 'start' state.
@@ -84,6 +97,12 @@ typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
 
 @end
 
+#pragma mark - 
+
+@interface ACEDrawingView (Deprecated)
+@property (nonatomic, strong) UIImage *prev_image DEPRECATED_MSG_ATTRIBUTE("Use 'backgroundImage' instead.");
+@end
+
 #pragma mark -
 
 @protocol ACEDrawingViewDelegate <NSObject>
@@ -91,5 +110,7 @@ typedef NS_ENUM(NSUInteger, ACEDrawingMode) {
 @optional
 - (void)drawingView:(ACEDrawingView *)view willBeginDrawUsingTool:(id<ACEDrawingTool>)tool;
 - (void)drawingView:(ACEDrawingView *)view didEndDrawUsingTool:(id<ACEDrawingTool>)tool;
+- (void)drawingView:(ACEDrawingView *)view didRedoDrawUsingTool:(id<ACEDrawingTool>)tool;
+- (void)drawingView:(ACEDrawingView *)view didUndoDrawUsingTool:(id<ACEDrawingTool>)tool;
 
 @end

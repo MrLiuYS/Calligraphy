@@ -1,7 +1,7 @@
-ACEDrawingView
+ACEDrawingView [![Build Status](https://travis-ci.org/acerbetti/ACEDrawingView.svg?branch=master)](https://travis-ci.org/acerbetti/ACEDrawingView) [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/ACEDrawingView.svg)](http://cocoadocs.org/docsets/ACEDrawingView) [![Platform](https://img.shields.io/cocoapods/p/ACEDrawingView.svg?style=flat)](http://cocoadocs.org/docsets/ACEDrawingView)
 ==============
 
-![](https://github.com/acerbetti/ACEDrawingView/blob/master/Example.png?raw=true)
+![](https://github.com/acerbetti/ACEDrawingView/blob/master/Example.png?raw=true)      ![](https://github.com/deviserRahul/ACEDrawingView/blob/master/Example2.png?raw=true)
 
 Purpose
 --------------
@@ -15,7 +15,7 @@ How-To
 - From IB create a view and set the class to "ACEDrawingView"
 - Programmatically use the initWithFrame: and add it as subview
 
-### Cocoapods(Recommended)
+### CocoaPods(Recommended)
 
 1. Add `pod 'ACEDrawingView'` to your Podfile.
 2. Run `pod install`
@@ -27,6 +27,7 @@ Features
 - Multiple color lines
 - Multiple width lines
 - Multiple alpha values
+- Draw on image
 - Create screenshot of your masterpiece
 - Support for multiple tools (pen, line, rectangle, ellipse)
 - Eraser tool
@@ -39,6 +40,10 @@ This component can be used in projects using ARC or not
 
 Change Log
 ------------------
+09/21/2016 - v2.0
+- Added advanced draggable text tool
+- Removed legacy text tools
+
 05/20/2014 - v1.3
 - Enhancements to text tool workflow
 - Fixed undo/redo with text tool
@@ -68,7 +73,7 @@ Change Log
 
 License
 ------------------
-Copyright (c) 2014 Stefano Acerbetti
+Copyright (c) 2016 Stefano Acerbetti
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -32,10 +32,6 @@
  */
 - (void)showGadInterstitial:(UIViewController *)aViewController;
 
-/**
- *  显示有米插屏广告
- */
-- (void)showYoumi;
 
 @end
 
@@ -90,13 +86,8 @@
         return;
     }
     
-    
-    //    if ([self isBetweenFromHour:10 toHour:15]) {
-    //        [self showYoumi];
-    //    }else {
     [self showGadInterstitial:aViewController];
-    //    }
-    
+
 }
 
 #pragma mark - 广告来源
@@ -157,29 +148,17 @@
     
     if (![UserData iAPClear]) {
         
-        if ([self.gadInterstitial isReady]) {
+        int a = arc4random()%5;
+
+        if ([self.gadInterstitial isReady] && a == 3) {
             [self.gadInterstitial presentFromRootViewController:aViewController];
-        }else {
-            [self showYoumi];
         }
         
     }
     
-    
-    
 }
 
-#pragma mark - 有米
-- (void)showYoumi {
-    
-    if (![UserData iAPClear]) {
-        
-        [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
-        }];
-        
-    }
-    
-}
+
 
 
 

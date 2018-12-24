@@ -1,4 +1,9 @@
 # Description #
+
+[![Pod Version](http://img.shields.io/cocoapods/v/GDataXML-HTML.svg?style=flat)](http://cocoadocs.org/docsets/GDataXML-HTML/)
+[![Pod Platform](http://img.shields.io/cocoapods/p/GDataXML-HTML.svg?style=flat)](http://cocoadocs.org/docsets/GDataXML-HTML/)
+[![Build Status](https://travis-ci.org/graetzer/GDataXML-HTML.svg?branch=master)](https://travis-ci.org/graetzer/GDataXML-HTML)
+
 GDataXML-HTML is a HTML/XML parser for iOS and OSX, based on Google's GDataXML. As the name suggest it adds support for the HTMLparser module of libxml2 and enables you to deal with non validating XML or HTML.
 
 So you can use e.g. XPath to parse Websites with reasonable performance
@@ -7,7 +12,7 @@ So you can use e.g. XPath to parse Websites with reasonable performance
 
 ### Install with CocoaPods
 
-pod 'GDataXML-HTML', '~> 1.2.1'
+pod 'GDataXML-HTML', '~> 1.4.1'
 
 ### Manually ###
 
@@ -25,7 +30,10 @@ Then you should see a list of build options.
 -lxml2
 
 # Examples #
+
 There are usage examples inside the GDataXML_HTMLViewController.m file.
+Basically the library builds an object library of the entire XML DOM. This library
+adds convenient Objective-C types around the libxml parsing library.
 
 ### Other examples for GDataXML on the web: ###
 

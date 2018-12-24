@@ -14,12 +14,6 @@
 //admob
 @import GoogleMobileAds;
 
-////掌盈
-//#import "JoyingSpotAd.h"
-//#import "SplashAd.h"
-
-//有米
-#import "ConfigHeader.h"
 
 
 typedef enum

@@ -42,15 +42,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     [GQMAdSupper showTableScreenInViewController:self];
     
-    
-    //    if (![UserData iAPClear]) {
-    //        //        int a = arc4random()%10;
-    //        //        if (a>4) {
-    //        [YouMiNewSpot showYouMiSpotAction:^(BOOL flag){
-    //        }];
-    //        //        }
-    //    }
-    
+
 }
 
 - (void)didReceiveMemoryWarning {

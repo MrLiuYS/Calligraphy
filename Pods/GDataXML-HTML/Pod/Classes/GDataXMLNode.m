@@ -19,6 +19,21 @@
 #define GDATAXMLNODE_DEFINE_GLOBALS 1
 #import "GDataXMLNode.h"
 
+// libxml includes require that the target Header Search Paths contain
+//
+//   /usr/include/libxml2
+//
+// and Other Linker Flags contain
+//
+//   -lxml2
+
+#import <libxml/tree.h>
+#import <libxml/parser.h>
+#import <libxml/xmlstring.h>
+#import <libxml/HTMLparser.h>
+#import <libxml/xpath.h>
+#import <libxml/xpathInternals.h>
+
 @class NSArray, NSDictionary, NSError, NSString, NSURL;
 @class GDataXMLElement, GDataXMLDocument;
 
@@ -111,7 +126,73 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     return qnameCopy;
 }
 
-@interface GDataXMLNode (PrivateMethods)
+static void RegisterNamespaces(NSDictionary *namespaces, xmlXPathContextPtr xpathCtx, const xmlNodePtr nsNodePtr) {
+    // if a namespace dictionary was provided, register its contents
+    if (namespaces) {
+        // the dictionary keys are prefixes; the values are URIs
+        for (NSString *prefix in namespaces) {
+            NSString *uri = [namespaces objectForKey:prefix];
+            
+            xmlChar *prefixChars = (xmlChar *) [prefix UTF8String];
+            xmlChar *uriChars = (xmlChar *) [uri UTF8String];
+            int result = xmlXPathRegisterNs(xpathCtx, prefixChars, uriChars);
+            if (result != 0) {
+#if DEBUG
+                NSCAssert1(result == 0, @"GDataXMLNode XPath namespace %@ issue",
+                           prefix);
+#endif
+            }
+        }
+    } else {
+        // no namespace dictionary was provided
+        // register the namespaces of this node step through the namespaces,
+        // if any, and register each with the xpath context
+        if (nsNodePtr != NULL) {
+            for (xmlNsPtr nsPtr = nsNodePtr->ns; nsPtr != NULL; nsPtr = nsPtr->next) {
+                
+                // default namespace is nil in the tree, but there's no way to
+                // register a default namespace, so we'll register a fake one,
+                // _def_ns
+                const xmlChar* prefix = nsPtr->prefix;
+                if (prefix == NULL) {
+                    prefix = (xmlChar*) kGDataXMLXPathDefaultNamespacePrefix;
+                }
+                
+                int result = xmlXPathRegisterNs(xpathCtx, prefix, nsPtr->href);
+                if (result != 0) {
+#if DEBUG
+                    NSCAssert1(result == 0, @"GDataXMLNode XPath namespace %s issue",
+                               prefix);
+#endif
+                }
+            }
+        }
+    }
+}
+
+@interface GDataXMLNode ()
+{
+@protected
+    // NSXMLNodes can have a namespace URI or prefix even if not part
+    // of a tree; xmlNodes cannot.  When we create nodes apart from
+    // a tree, we'll store the dangling prefix or URI in the xmlNode's name,
+    // like
+    //   "prefix:name"
+    // or
+    //   "{http://uri}:name"
+    //
+    // We will fix up the node's namespace and name (and those of any children)
+    // later when adding the node to a tree with addChild: or addAttribute:.
+    // See fixUpNamespacesForNode:.
+    
+    xmlNodePtr xmlNode_; // may also be an xmlAttrPtr or xmlNsPtr
+    BOOL shouldFreeXMLNode_; // if yes, xmlNode_ will be free'd in dealloc
+    
+    // cached values
+    NSString *cachedName_;
+    NSArray *cachedChildren_;
+    NSArray *cachedAttributes_;
+}
 
 // consuming a node implies it will later be freed when the instance is
 // dealloc'd; borrowing it implies that ownership and disposal remain the
@@ -127,9 +208,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 - (xmlNodePtr)XMLNode;
 - (xmlNodePtr)XMLNodeCopy;
 
-// search for an underlying attribute
-- (GDataXMLNode *)attributeForXMLNode:(xmlAttrPtr)theXMLNode;
-
 // return an NSString for an xmlChar*, using our strings cache in the
 // document
 - (NSString *)stringFromXMLString:(const xmlChar *)chars;
@@ -140,7 +218,10 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
 @end
 
-@interface GDataXMLElement (PrivateMethods)
+@interface GDataXMLElement ()
+
+// search for an underlying attribute
+- (GDataXMLNode *)attributeForXMLNode:(xmlAttrPtr)theXMLNode;
 
 + (void)fixUpNamespacesForNode:(xmlNodePtr)nodeToFix
             graftingToTreeNode:(xmlNodePtr)graftPointNode;
@@ -529,6 +610,8 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
                 str = [self stringFromXMLString:(nsNode->prefix)];
             }
             
+        } else if (xmlNode_->type == XML_ENTITY_DECL) {
+            str = [self stringFromXMLString:(xmlNode_->name)];
         } else if (xmlNode_->ns != NULL && xmlNode_->ns->prefix != NULL) {
             
             // name of a non-namespace node
@@ -743,56 +826,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
         if (xpathCtx) {
             // anchor at our current node
             xpathCtx->node = xmlNode_;
-            
-            // if a namespace dictionary was provided, register its contents
-            if (namespaces) {
-                // the dictionary keys are prefixes; the values are URIs
-                for (NSString *prefix in namespaces) {
-                    NSString *uri = [namespaces objectForKey:prefix];
-                    
-                    xmlChar *prefixChars = (xmlChar *) [prefix UTF8String];
-                    xmlChar *uriChars = (xmlChar *) [uri UTF8String];
-                    int result = xmlXPathRegisterNs(xpathCtx, prefixChars, uriChars);
-                    if (result != 0) {
-#if DEBUG
-                        NSCAssert1(result == 0, @"GDataXMLNode XPath namespace %@ issue",
-                                   prefix);
-#endif
-                    }
-                }
-            } else {
-                // no namespace dictionary was provided
-                //
-                // register the namespaces of this node, if it's an element, or of
-                // this node's root element, if it's a document
-                xmlNodePtr nsNodePtr = xmlNode_;
-                if (xmlNode_->type == XML_DOCUMENT_NODE) {
-                    nsNodePtr = xmlDocGetRootElement((xmlDocPtr) xmlNode_);
-                }
-                
-                // step through the namespaces, if any, and register each with the
-                // xpath context
-                if (nsNodePtr != NULL) {
-                    for (xmlNsPtr nsPtr = nsNodePtr->ns; nsPtr != NULL; nsPtr = nsPtr->next) {
-                        
-                        // default namespace is nil in the tree, but there's no way to
-                        // register a default namespace, so we'll register a fake one,
-                        // _def_ns
-                        const xmlChar* prefix = nsPtr->prefix;
-                        if (prefix == NULL) {
-                            prefix = (xmlChar*) kGDataXMLXPathDefaultNamespacePrefix;
-                        }
-                        
-                        int result = xmlXPathRegisterNs(xpathCtx, prefix, nsPtr->href);
-                        if (result != 0) {
-#if DEBUG
-                            NSCAssert1(result == 0, @"GDataXMLNode XPath namespace %s issue",
-                                       prefix);
-#endif
-                        }
-                    }
-                }
-            }
+            RegisterNamespaces(namespaces, xpathCtx, xmlNode_);
             
             // now evaluate the path
             xmlXPathObjectPtr xpathObj;
@@ -920,8 +954,8 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 @implementation GDataXMLElement
 
 - (id)initWithXMLString:(NSString *)str error:(NSError **)error {
-    self = [super init];
-    if (self) {
+    
+    if (self = [super init]) {
         
         const char *utf8Str = [str UTF8String];
         // NOTE: We are assuming a string length that fits into an int
@@ -957,8 +991,8 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 }
 
 - (id)initWithHTMLString:(NSString *)str error:(NSError **)error {
-    self = [super init];
-    if (self) {
+    
+    if (self = [super init]) {
         
         const char *utf8Str = [str UTF8String];
         // NOTE: We are assuming a string length that fits into an int
@@ -1650,7 +1684,13 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 @end
 
 
-@interface GDataXMLDocument (PrivateMethods)
+@interface GDataXMLDocument ()
+{
+@protected
+    xmlDoc* xmlDoc_; // strong; always free'd in dealloc
+    NSStringEncoding _encoding;
+}
+
 - (void)addStringsCacheToDoc;
 const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding);
 @end
@@ -1710,61 +1750,54 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
 
 - (id)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding error:(NSError **)error {
     
-    self = [super init];
-	if (!self) {
-		return nil;
+	if (self = [super init]) {
+        _encoding = encoding;
+        
+        const char *baseURL = NULL;
+        
+        const char *xmlEncoding = IANAEncodingCStringFromNSStringEncoding(encoding);
+        
+        // NOTE: We are assuming [data length] fits into an int.
+        xmlDoc_ = xmlReadMemory((const char*)[data bytes], (int)[data length], baseURL, xmlEncoding,
+                                kGDataXMLParseOptions); // TODO(grobbins) map option values
+        if (xmlDoc_ == NULL) {
+            if (error) {
+                *error = [NSError errorWithDomain:@"com.google.GDataXML"
+                                             code:-1
+                                         userInfo:nil];
+                // TODO(grobbins) use xmlSetGenericErrorFunc to capture error
+            }
+            return nil;
+        } else {
+            if (error) *error = NULL;
+            [self addStringsCacheToDoc];
+        }
 	}
 	
-	_encoding = encoding;
-	
-	const char *baseURL = NULL;
-	
-	const char *xmlEncoding = IANAEncodingCStringFromNSStringEncoding(encoding);
-	
-	// NOTE: We are assuming [data length] fits into an int.
-	xmlDoc_ = xmlReadMemory((const char*)[data bytes], (int)[data length], baseURL, xmlEncoding,
-							kGDataXMLParseOptions); // TODO(grobbins) map option values
-	if (xmlDoc_ == NULL) {
-		if (error) {
-			*error = [NSError errorWithDomain:@"com.google.GDataXML"
-										 code:-1
-									 userInfo:nil];
-			// TODO(grobbins) use xmlSetGenericErrorFunc to capture error
-		}
-		return nil;
-	} else {
-		if (error) *error = NULL;
-		
-		[self addStringsCacheToDoc];
-	}
-    
     return self;
 }
 
 - (id)initWithHTMLData:(NSData *)data encoding:(NSStringEncoding)encoding error:(NSError **)error {
     
-    self = [super init];
-	if (!self) {
-		return nil;
-	}
-	const char *baseURL = NULL;
-	_encoding = encoding;
-	
-	
-	const char *xmlEncoding = IANAEncodingCStringFromNSStringEncoding(encoding);
-	xmlDoc_ = htmlReadMemory((const char*)[data bytes], (int)[data length], baseURL, xmlEncoding, kGDataHTMLParseOptions);
-	if (xmlDoc_ == NULL) {
-		if (error) {
-			*error = [NSError errorWithDomain:@"com.google.GDataXML"
-										 code:-1
-									 userInfo:nil];
-			// TODO(grobbins) use xmlSetGenericErrorFunc to capture error
-		}
-		return nil;
-	} else {
-		if (error) *error = NULL;
-		
-		[self addStringsCacheToDoc];
+	if (self = [super init]) {
+        const char *baseURL = NULL;
+        _encoding = encoding;
+        
+        const char *xmlEncoding = IANAEncodingCStringFromNSStringEncoding(encoding);
+        xmlDoc_ = htmlReadMemory((const char*)[data bytes], (int)[data length], baseURL, xmlEncoding, kGDataHTMLParseOptions);
+        if (xmlDoc_ == NULL) {
+            if (error) {
+                *error = [NSError errorWithDomain:@"com.google.GDataXML"
+                                             code:-1
+                                         userInfo:nil];
+                // TODO(grobbins) use xmlSetGenericErrorFunc to capture error
+            }
+            return nil;
+        } else {
+            if (error) *error = NULL;
+            
+            [self addStringsCacheToDoc];
+        }
 	}
     
     return self;
@@ -1901,8 +1934,7 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
     return [self nodesForXPath:xpath namespaces:nil error:error];
 }
 
-- (GDataXMLNode *)firstNodeForXPath:(NSString *)xpath error:(NSError **)error
-{
+- (GDataXMLNode *)firstNodeForXPath:(NSString *)xpath error:(NSError **)error {
 	NSArray *nodes = [self nodesForXPath:xpath error:error];
 	if (!nodes.count) {
 		return nil;
@@ -1913,17 +1945,58 @@ const char *IANAEncodingCStringFromNSStringEncoding(NSStringEncoding encoding)
 - (NSArray *)nodesForXPath:(NSString *)xpath
                 namespaces:(NSDictionary *)namespaces
                      error:(NSError **)error {
+
+    NSMutableArray *array = nil;
+    NSInteger errorCode = -1;
+    NSDictionary *errorInfo = nil;
+
     if (xmlDoc_ != NULL) {
-        xmlNodePtr rootElement = xmlDocGetRootElement(xmlDoc_);
-        if (rootElement != NULL) {
-            GDataXMLNode *rootNode = [GDataXMLElement nodeBorrowingXMLNode:rootElement];
-            NSArray *array = [rootNode nodesForXPath:xpath
-                                         namespaces:namespaces
-                                              error:error];
-            return array;
+        xmlXPathContextPtr xpathCtx = xmlXPathNewContext(xmlDoc_);
+        if (xpathCtx) {
+            xpathCtx->node = (xmlNodePtr)xmlDoc_;
+            RegisterNamespaces(namespaces, xpathCtx, xmlDocGetRootElement(xmlDoc_));
+            
+            // now evaluate the path
+            xmlXPathObjectPtr xpathObj = xmlXPathEval(GDataGetXMLString(xpath), xpathCtx);
+            if (xpathObj) {
+                // we have some result from the search
+                array = [NSMutableArray array];
+                xmlNodeSetPtr nodeSet = xpathObj->nodesetval;
+                if (!xmlXPathNodeSetIsEmpty(nodeSet)) {
+                    // add each node in the result set to our array
+                    for (int index = 0; index < nodeSet->nodeNr; index++) {
+                        xmlNodePtr currNode = nodeSet->nodeTab[index];
+                        GDataXMLNode *node = [GDataXMLNode nodeBorrowingXMLNode:currNode];
+                        if (node) {
+                            [array addObject:node];
+                        }
+                    }
+                }
+                xmlXPathFreeObject(xpathObj);
+            } else {
+                // provide an error for failed evaluation
+                const char *msg = xpathCtx->lastError.str1;
+                errorCode = xpathCtx->lastError.code;
+                if (msg) {
+                    NSString *errStr = [NSString stringWithUTF8String:msg];
+                    errorInfo = [NSDictionary dictionaryWithObject:errStr
+                                                            forKey:@"error"];
+                }
+            }
+            xmlXPathFreeContext(xpathCtx);
         }
+    } else {
+        // not a valid node for using XPath
+        errorInfo = [NSDictionary dictionaryWithObject:@"invalid node"
+                                                forKey:@"error"];
     }
-    return nil;
+    if (array == nil && error != nil) {
+        *error = [NSError errorWithDomain:@"com.google.GDataXML"
+                                     code:errorCode
+                                 userInfo:errorInfo];
+    }
+
+    return array;
 }
 
 - (GDataXMLNode *)firstNodeForXPath:(NSString *)xpath namespaces:(NSDictionary *)namespaces error:(NSError *__autoreleasing *)error

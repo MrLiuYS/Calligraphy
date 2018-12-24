@@ -12,14 +12,17 @@
 #import <GDataXMLNode.h>
 #import <CocoaLumberjack.h>
 #import <SVProgressHUD.h>
-#import <MobClick.h>
-#import "ConfigHeader.h"
+
+
+
+//#import "MobClick.h"
+#import <UMMobClick/MobClick.h>
 
 #import "UserData.h"
 
 #import "QMAdSupper.h"
 
-#define kBaseURLString @"http://shufa.m.supfree.net/"
+#define kBaseURLString @"https://shufa.supfree.net/"
 
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 

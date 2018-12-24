@@ -1,18 +1,29 @@
-platform :ios, "7.0"
+platform :ios, "8.0"
 
-pod 'AFNetworking', '~> 2.5.4'
-pod 'GDataXML-HTML', '~> 1.2.0'
-pod 'CocoaLumberjack', '~> 2.0.0'
-pod 'SVProgressHUD', '~> 1.1.3'
-pod 'UMengAnalytics', '~> 3.5.8'
-pod 'UMengSocial', '~> 4.2.2'
-pod 'SDWebImage', '~> 3.7.2'
-pod 'SimplePurchase', '~> 0.0.1'
-pod 'MZFormSheetController', '~> 3.1.0'
-pod 'ACEDrawingView', '~> 1.3.5'
-pod 'PopoverView', '~> 0.0.2'
-pod 'Google-Mobile-Ads-SDK', '~> 7.7.0'
+inhibit_all_warnings!
 
-target :CalligraphyTests, :exclusive => true do
-    # pod 'Kiwi'
+targetsArray = ['Calligraphy']
+# 循环
+targetsArray.each do |t|
+    target t do
+        
+        pod 'AFNetworking'
+        pod 'GDataXML-HTML'
+        pod 'CocoaLumberjack'
+        pod 'SVProgressHUD'
+        pod 'UMengAnalytics', '~> 4.2.4'
+        pod 'UMengSocial'
+        pod 'SDWebImage'
+        pod 'SimplePurchase'
+        pod 'MZFormSheetController'
+        pod 'ACEDrawingView'
+        pod 'PopoverView'
+        pod 'Google-Mobile-Ads-SDK'
+        #没有改过
+        pod 'AvoidCrash'
+
+        
+        
+    end
 end
+

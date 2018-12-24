@@ -10,6 +10,9 @@
 
 #import <UMSocial.h>
 
+#import <UMMobClick/MobClick.h>
+
+
 @interface AppDelegate ()
 
 @end
@@ -19,20 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    UMConfigInstance.appKey = kUMengKey;
+    UMConfigInstance.channelId = @"AppStore";
     
-    NSString *appid = @"5b35c80d69c91d36";
-    NSString *secretId = @"2d73e963e3efdafe";
-    [YouMiNewSpot initYouMiDeveloperParams:appid YM_SecretId:secretId];
-    
-    //使用前先初始化一下插屏
-    [YouMiNewSpot initYouMiDeveLoperSpot:kSPOTSpotTypeBoth];//填上你对应的横竖屏模式
-    
-    [MobClick startWithAppkey:kUMengKey reportPolicy:BATCH   channelId:@"AppStore"];
-    
+    [MobClick startWithConfigure:UMConfigInstance];
+
     [UMSocialData setAppKey:kUMengKey];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
-    
     
     //    setenv("XcodeColors", "YES", 0);
     //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
