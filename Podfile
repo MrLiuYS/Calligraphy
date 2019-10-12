@@ -21,6 +21,9 @@ targetsArray.each do |t|
         pod 'Google-Mobile-Ads-SDK'
         #没有改过
         pod 'AvoidCrash'
+        
+        
+        pod 'LYSGoogleAd', '~> 0.1.0'
 
         
         

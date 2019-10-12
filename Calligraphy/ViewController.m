@@ -11,6 +11,8 @@
 #import "TextCollectionController.h"
 #import "AuthorCollectionController.h"
 #import "DefaultReusableView.h"
+#import <LYSGoogleAd.h>
+
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate,UISearchBarDelegate,DefaultReusableViewDelegate> {
     
     
@@ -49,14 +51,16 @@ static NSString * const reuseIdentifier = @"GradientCell";
     }];
     
     
-    if ([UserData iAPClear]) {
-        
-        _bannerViewHeight.constant = 0;
-    }
+//    if ([UserData iAPClear]) {
+//
+//        _bannerViewHeight.constant = 0;
+//    }
     
+
+    [LYSGoogleAd lys_showGadBannerVC:self];
     
-    [GQMAdSupper showBannerInView:_bannerView
-                   viewController:self];
+//    [GQMAdSupper showBannerInView:_bannerView
+//                   viewController:self];
     
 }
 

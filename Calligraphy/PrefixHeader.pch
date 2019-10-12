@@ -20,7 +20,7 @@
 
 #import "UserData.h"
 
-#import "QMAdSupper.h"
+//#import "QMAdSupper.h"
 
 #define kBaseURLString @"https://shufa.supfree.net/"
 

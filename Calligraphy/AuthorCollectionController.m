@@ -10,6 +10,9 @@
 #import "Service.h"
 #import <UIImageView+WebCache.h>
 #import "WriteViewController.h"
+
+#import <LYSGoogleAd.h>
+
 @interface AuthorCollectionController () {
     NSInteger pageInt;
 }
@@ -40,7 +43,9 @@ static NSString * const reuseIdentifier = @"Cell";
                              
                          }];
     
-    [GQMAdSupper showTableScreenInViewController:self];
+    [LYSGoogleAd lys_showInterstitialVC:self];
+    
+//    [GQMAdSupper showTableScreenInViewController:self];
     
 
 }

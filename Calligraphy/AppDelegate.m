@@ -12,6 +12,8 @@
 
 #import <UMMobClick/MobClick.h>
 
+#import <LYSGoogleAd.h>
+@import GoogleMobileAds;
 
 @interface AppDelegate ()
 
@@ -31,6 +33,13 @@
     [UMSocialData setAppKey:kUMengKey];
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
+    
+    
+//    [[GADMobileAds sharedInstance] startWithCompletionHandler:nil];
+    
+    [LYSGoogleAd lys_adBannerUnitID:@"ca-app-pub-5240802043946893/5318991002"];
+    
+    [LYSGoogleAd lys_adInterstitialUnitID:@"ca-app-pub-5240802043946893/7333058053"];
     
     //    setenv("XcodeColors", "YES", 0);
     //    [DDLog addLogger:[DDTTYLogger sharedInstance]];

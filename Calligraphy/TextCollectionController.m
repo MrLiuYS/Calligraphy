@@ -12,6 +12,8 @@
 
 #import "WriteViewController.h"
 
+#import <LYSGoogleAd.h>
+
 @interface TextCollectionController ()
 
 @property (nonatomic, strong) NSMutableArray * dataArray;
@@ -41,7 +43,10 @@ static NSString * const reuseIdentifier = @"Cell";
     }];
     
     
-    [GQMAdSupper showTableScreenInViewController:self];
+    [LYSGoogleAd lys_showInterstitialVC:self];
+//    [LYSGoogleAd lys_showGadBannerVC:self];
+    
+//    [GQMAdSupper showTableScreenInViewController:self];
 }
 
 - (void)didReceiveMemoryWarning {

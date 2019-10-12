@@ -16,24 +16,53 @@ PODS:
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
   - AvoidCrash (2.5.2)
-  - CocoaLumberjack (3.4.2):
-    - CocoaLumberjack/Default (= 3.4.2)
-    - CocoaLumberjack/Extensions (= 3.4.2)
-  - CocoaLumberjack/Default (3.4.2)
-  - CocoaLumberjack/Extensions (3.4.2):
-    - CocoaLumberjack/Default
+  - CocoaLumberjack (3.5.2):
+    - CocoaLumberjack/Core (= 3.5.2)
+  - CocoaLumberjack/Core (3.5.2)
   - GDataXML-HTML (1.4.1)
-  - Google-Mobile-Ads-SDK (7.37.0)
+  - Google-Mobile-Ads-SDK (7.42.2):
+    - GoogleAppMeasurement (~> 5.7)
+  - GoogleAppMeasurement (5.8.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.7.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.7.0)
+  - GoogleUtilities/Logger (5.7.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.7.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.7.0)"
+  - GoogleUtilities/Reachability (5.7.0):
+    - GoogleUtilities/Logger
+  - LYSGoogleAd (0.1.0):
+    - Google-Mobile-Ads-SDK
+    - Masonry (~> 1.0.2)
+  - Masonry (1.0.2)
   - MZAppearance (1.1.6)
   - MZFormSheetController (3.1.3):
     - MZAppearance
     - MZFormSheetController/Core (= 3.1.3)
   - MZFormSheetController/Core (3.1.3):
     - MZAppearance
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
   - PopoverView (0.0.2)
-  - SDWebImage (4.4.3):
-    - SDWebImage/Core (= 4.4.3)
-  - SDWebImage/Core (4.4.3)
+  - SDWebImage (5.0.1):
+    - SDWebImage/Core (= 5.0.1)
+  - SDWebImage/Core (5.0.1)
   - SimplePurchase (0.0.1)
   - SVProgressHUD (2.2.5)
   - UMengAnalytics (4.2.4)
@@ -46,6 +75,7 @@ DEPENDENCIES:
   - CocoaLumberjack
   - GDataXML-HTML
   - Google-Mobile-Ads-SDK
+  - LYSGoogleAd (~> 0.1.0)
   - MZFormSheetController
   - PopoverView
   - SDWebImage
@@ -62,8 +92,13 @@ SPEC REPOS:
     - CocoaLumberjack
     - GDataXML-HTML
     - Google-Mobile-Ads-SDK
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - LYSGoogleAd
+    - Masonry
     - MZAppearance
     - MZFormSheetController
+    - nanopb
     - PopoverView
     - SDWebImage
     - SimplePurchase
@@ -75,18 +110,23 @@ SPEC CHECKSUMS:
   ACEDrawingView: fa6e8461682a54db3ac65151474fc77ef7e54fd2
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AvoidCrash: 28c6916fe19bd2b84126b8dec7cbe61c9a12741d
-  CocoaLumberjack: db7cc9e464771f12054c22ff6947c5a58d43a0fd
+  CocoaLumberjack: 118bf4a820efc641f79fa487b75ed928dccfae23
   GDataXML-HTML: a4f11079b48d9fe96ff1fe478943a317185227e2
-  Google-Mobile-Ads-SDK: d028682d7450749a1955679da050eaf70d997b3e
+  Google-Mobile-Ads-SDK: 8f4f7e793bfd3fff5b082181b54112f81b579a67
+  GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
+  GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
+  LYSGoogleAd: 1a6313905da02e6be752637b791ccfe5db17cb30
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MZAppearance: 0c06d3fa9cc55142f1da14bc8631fbe8fd6e19d5
   MZFormSheetController: da2df509805d757e04b052915057d8e1a338b050
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PopoverView: 62e83ffda75944d6cf2de9c6593489f3097dc1a3
-  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  SDWebImage: 27dd2c9ea07a2252f94557c9fbb6105ee94b74c9
   SimplePurchase: 5ed9b5fe46ee946636298257d24ba2990c427a21
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
   UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
 
-PODFILE CHECKSUM: 8a34c2f5c3e0ad9b3864b2c068a2cd46f96f4bb3
+PODFILE CHECKSUM: e4797b125cd2fec4c25f552e926cf235de10688e
 
 COCOAPODS: 1.6.0.beta.1
